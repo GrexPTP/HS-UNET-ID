@@ -1,0 +1,14 @@
+.white-icon {
+    color: white;
+}
+
+.description-image {
+    max-height: 300px !important;
+    max-width: 400px !important;
+}
+
+.in-list-description-image {
+    max-height: 70px !important;
+    max-width: 70px !important;
+    border-radius: 5px;
+}

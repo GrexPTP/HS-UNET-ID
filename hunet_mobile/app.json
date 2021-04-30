@@ -1,0 +1,57 @@
+{
+  "expo": {
+    "name": "Hunet",
+    "slug": "Hunet",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./src/assets/icon.png",
+    "facebookScheme": "fb799520370645414",
+    "facebookAppId": "799520370645414",
+    "facebookDisplayName": "Hunet",
+    "splash": {
+      "image": "./src/assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "hooks": {
+      "postPublish": [
+        {
+          "file": "sentry-expo/upload-sourcemaps",
+          "config": {
+            "organization": "hunet-team",
+            "project": "hunet-app",
+            "authToken": "634c20ebe8424990b1297d6b1f3d664c11d66553fd664bd6888611c6807c5e42"
+          }
+        }
+      ]
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.hunet.hunet",
+      "config": {
+        "googleSignIn": {
+          "reservedClientId": "com.googleusercontent.apps.872405128438-9fc2p8fhm9tvot1ibnt5mr9i8bkp4hjh"
+        }
+      },
+      "googleServicesFile": "./GoogleService-Info.plist"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./src/assets/adaptive-icon.png",
+        "backgroundColor": "#FFFFFF"
+      },
+      "package": "com.hunet.hunet",
+      "googleServicesFile": "./google-services.json"
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "description": ""
+  }
+}

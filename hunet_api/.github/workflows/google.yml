@@ -1,0 +1,62 @@
+# This workflow will build a docker container, publish it to Google Container Registry, and deploy it to GKE when a release is created
+#
+# To configure this workflow:
+#
+# 1. Ensure that your repository contains the necessary configuration for your Google Kubernetes Engine cluster, including deployment.yml, kustomization.yml, service.yml, etc.
+#
+# 2. Set up secrets in your workspace: GKE_PROJECT with the name of the project and GKE_SA_KEY with the Base64 encoded JSON service account key (https://github.com/GoogleCloudPlatform/github-actions/tree/docs/service-account-key/setup-gcloud#inputs).
+#
+# 3. Change the values for the GKE_ZONE, GKE_CLUSTER, IMAGE, and DEPLOYMENT_NAME environment variables (below).
+#
+# For more support on how to run the workflow, please visit https://github.com/google-github-actions/setup-gcloud/tree/master/example-workflows/gke
+
+name: Build and Deploy to GKE
+on:
+  workflow_run:
+    workflows: ["Node.js CI"]
+    branches: [ master ]
+    types:
+      - completed
+
+env:
+  PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
+  REGION: us-central1   # TODO: update to cluster zone
+  SERVICE: hunet-api-auto-deployment
+jobs:
+  deploy:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Setup Cloud SDK
+      uses: google-github-actions/setup-gcloud@v0.2.0
+      with:
+        project_id: ${{ env.PROJECT_ID }}
+        service_account_key: ${{ secrets.GCP_CREDENTIALS }}
+        export_default_credentials: true  # Set to true to authenticate the Cloud Run action
+
+    - name: Authorize Docker push
+      run: gcloud auth configure-docker
+
+    - name: Build and Push Container
+      run: |-
+        docker build -t gcr.io/${{ env.PROJECT_ID }}/${{ env.SERVICE }}:${{  github.sha }} .
+        docker push gcr.io/${{ env.PROJECT_ID }}/${{ env.SERVICE }}:${{  github.sha }}
+        
+    - name: Deploy to Cloud Run
+      id: deploy
+      uses: google-github-actions/deploy-cloudrun@v0.2.0
+      with:
+        service: ${{ env.SERVICE }}
+        image: gcr.io/${{ env.PROJECT_ID }}/${{ env.SERVICE }}:${{  github.sha }}
+        region: ${{ env.REGION }}
+
+    - name: Show Output
+      run: echo ${{ steps.deploy.outputs.url }}
+      
+      
+      
+      
+

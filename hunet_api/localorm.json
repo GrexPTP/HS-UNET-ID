@@ -1,0 +1,8 @@
+{
+  "type": "mysql",
+  "host": "104.154.42.27",
+  "username": "root",
+  "password": "123456789",
+  "database": "hunet",
+  "entities": ["dist/**/*.entity{.ts,.js}"]
+}

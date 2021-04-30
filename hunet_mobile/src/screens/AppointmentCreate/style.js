@@ -1,0 +1,230 @@
+import {
+  StyleSheet,
+  ImageBackground,
+  Dimensions,
+  StatusBar,
+  KeyboardAvoidingView,
+  Platform,
+} from "react-native";
+
+import { Block, Checkbox, Text, theme } from "galio-framework";
+import { HeaderHeight } from "../../constants/utils";
+
+import { Button, Icon, Input } from "../../components";
+import { Images, argonTheme } from "../../constants";
+
+const win = Dimensions.get("window");
+const { width, height } = Dimensions.get("screen");
+
+const thumbMeasure = (width - 48 - 32) / 3;
+
+const styles = StyleSheet.create({
+  home: {
+    width: width,
+  },
+  articles: {
+    width: width,
+    paddingVertical: theme.SIZES.BASE,
+    padding: 5,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  scroll: {},
+  container: {
+    width: width - theme.SIZES.BASE * 2,
+    backgroundColor: "#ffffff",
+    borderRadius: 10,
+    padding: 10,
+    marginVertical: 5,
+  },
+  centeredView: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 22,
+  },
+  modalView: {
+    margin: 20,
+    backgroundColor: "white",
+    borderRadius: 10,
+    padding: 70,
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+  },
+  openButton: {
+    backgroundColor: "#F194FF",
+    borderRadius: 20,
+    padding: 10,
+    elevation: 2,
+  },
+  textStyle: {
+    color: "white",
+    fontWeight: "bold",
+    textAlign: "center",
+  },
+  modalText: {
+    marginBottom: 15,
+    textAlign: "center",
+  },
+  socialButtons: {
+    margin: 5,
+    height: 40,
+    width: 40,
+    backgroundColor: "white",
+    shadowColor: argonTheme.COLORS.BLACK,
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    shadowRadius: 8,
+    shadowOpacity: 0.1,
+    elevation: 1,
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: argonTheme.COLORS.PRIMARY,
+  },
+  socialDisableButtons: {
+    margin: 5,
+    height: 40,
+    width: 40,
+    backgroundColor: "#efebe9",
+    shadowColor: argonTheme.COLORS.BLACK,
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    shadowRadius: 8,
+    shadowOpacity: 0.1,
+    elevation: 1,
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: argonTheme.COLORS.PRIMARY,
+  },
+  socialSelectedButtons: {
+    margin: 5,
+    height: 40,
+    width: 40,
+    backgroundColor: "#e7b9ff",
+    shadowColor: argonTheme.COLORS.BLACK,
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    shadowRadius: 8,
+    shadowOpacity: 0.1,
+    elevation: 1,
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: argonTheme.COLORS.PRIMARY,
+  },
+  timeButtons: {
+    margin: 2,
+    height: 25,
+    width: 70,
+    backgroundColor: "white",
+    shadowColor: argonTheme.COLORS.BLACK,
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    shadowRadius: 8,
+    shadowOpacity: 0.1,
+    elevation: 1,
+    borderRadius: 4,
+    borderWidth: 1,
+    borderColor: argonTheme.COLORS.PRIMARY,
+  },
+  timeDisabledButtons: {
+    margin: 2,
+    height: 25,
+    width: 70,
+    backgroundColor: "#efebe9",
+    shadowColor: argonTheme.COLORS.BLACK,
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    shadowRadius: 8,
+    shadowOpacity: 0.1,
+    elevation: 1,
+    borderRadius: 4,
+    borderWidth: 1,
+    borderColor: argonTheme.COLORS.PRIMARY,
+  },
+  timeSelectedButtons: {
+    margin: 2,
+    height: 25,
+    width: 70,
+    backgroundColor: "#e7b9ff",
+    shadowColor: argonTheme.COLORS.BLACK,
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    shadowRadius: 8,
+    shadowOpacity: 0.1,
+    elevation: 1,
+    borderRadius: 4,
+    borderWidth: 1,
+    borderColor: argonTheme.COLORS.PRIMARY,
+  },
+  socialTextButtons: {
+    color: argonTheme.COLORS.PRIMARY,
+    fontWeight: "800",
+    fontSize: 20,
+    textAlign: "center",
+  },
+  timeText: {
+    color: argonTheme.COLORS.PRIMARY,
+    fontWeight: "500",
+    fontSize: 12,
+  },
+  appontmentButton: {
+    margin: 10,
+    height: 50,
+    width: 150,
+    shadowColor: argonTheme.COLORS.BLACK,
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    shadowRadius: 8,
+    shadowOpacity: 0.1,
+    elevation: 1,
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: argonTheme.COLORS.PRIMARY,
+    backgroundColor: argonTheme.COLORS.WHITE,
+  },
+  confirmButton: {
+    margin: 5,
+    height: 50,
+    width: 100,
+    borderRadius: 10,
+    borderWidth: 1,
+    backgroundColor: argonTheme.COLORS.SUCCESS,
+    borderColor: argonTheme.COLORS.SUCCESS,
+  },
+  cancleButton: {
+    margin: 5,
+    height: 50,
+    width: 100,
+    borderRadius: 10,
+    borderWidth: 1,
+    backgroundColor: argonTheme.COLORS.ERROR,
+    borderColor: argonTheme.COLORS.ERROR,
+  },
+  confirmTextButtons: {
+    color: argonTheme.COLORS.WHITE,
+    fontWeight: "800",
+    fontSize: 16,
+  },
+});
+export default styles;

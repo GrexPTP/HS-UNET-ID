@@ -1,0 +1,246 @@
+# This file was generated based on ".graphqlconfig". Do not edit manually.
+
+schema {
+    query: Query
+    mutation: Mutation
+}
+
+type Appointment {
+    createdAt: DateTime!
+    description: String
+    doctor: User!
+    id: Int!
+    meetingTime: DateTime!
+    patient: User!
+    updatedAt: DateTime!
+}
+
+type AppointmentsPaginationResultDto {
+    data: [Appointment]!
+    limit: Int
+    page: Int
+    totalCount: Int
+}
+
+type Auth {
+    message: String!
+    token: String
+}
+
+type Disease {
+    createdAt: DateTime!
+    description: String
+    examinationDetails: [ExaminationDetail!]!
+    examinations: [Examination!]!
+    id: Int!
+    images: String
+    name: String!
+    slug: String!
+    updatedAt: DateTime!
+}
+
+type DiseasesPaginationResultDto {
+    data: [Disease!]!
+    limit: Int
+    page: Int
+    totalCount: Int
+}
+
+type Examination {
+    createdAt: DateTime!
+    customerDescription: String
+    disease: Disease!
+    doctor: User
+    doctorFeedback: String
+    examinationDetails: [ExaminationDetail!]!
+    id: Int!
+    image: String!
+    patient: User!
+    resultImage: String!
+    status: String!
+    updatedAt: DateTime!
+}
+
+type ExaminationDetail {
+    createdAt: DateTime!
+    disease: Disease!
+    examination: Examination!
+    id: Int!
+    percentage: Int!
+    updatedAt: DateTime!
+}
+
+type ExaminationsPaginationResultDto {
+    data: [Examination!]!
+    limit: Int
+    page: Int
+    totalCount: Int
+}
+
+type Mutation {
+    createExamination(createExaminationInput: CreateExaminationInput!): Examination!
+    createRole(createRoleInput: CreateRoleInput!): Role!
+    createUser(createUser: CreateUserDto!): User!
+    login(password: String!, username: String!): Auth!
+    removeExamination(id: Int!): Examination!
+    removeRole(id: Int!): Role!
+    signup(signUpInput: CreateUserDto!): Auth!
+    updateExamination(updateExaminationInput: UpdateExaminationInput!): Examination!
+    updateRole(updateRoleInput: UpdateRoleInput!): Role!
+}
+
+type News {
+    content: String!
+    createdAt: DateTime!
+    creator: User!
+    description: String
+    descriptionImage: String
+    id: Int!
+    title: String!
+    updatedAt: DateTime!
+}
+
+type NewsPaginationResultDto {
+    data: [News!]!
+    limit: Int
+    page: Int
+    totalCount: Int
+}
+
+type Permission {
+    action: String!
+    createdAt: DateTime!
+    description: String
+    id: Int!
+    model: String!
+    updatedAt: DateTime!
+}
+
+type Query {
+    allNews(pagination: PaginationDto): NewsPaginationResultDto!
+    appointment(id: Int!): Appointment!
+    appointments(pagination: PaginationDto): AppointmentsPaginationResultDto!
+    disease(id: Int!): Disease!
+    diseases(pagination: PaginationDto): DiseasesPaginationResultDto!
+    examination(id: Int!): Examination!
+    examinationDetail(id: Int!): ExaminationDetail!
+    examinations(pagination: PaginationDto): ExaminationsPaginationResultDto!
+    news(id: Int!): News!
+    permission(id: Int!): Permission!
+    permissions: [Permission!]!
+    role(id: Int!): Role!
+    roles: [Role!]!
+    user: User!
+    users: [User!]!
+}
+
+type Role {
+    createdAt: DateTime!
+    "Role ID"
+    id: Int!
+    "Role Name"
+    name: String!
+    permissions: [Permission!]!
+    "Role Slug"
+    slug: String!
+    updatedAt: DateTime!
+    users: [User!]!
+}
+
+type User {
+    appointmentAttendant: [Appointment]!
+    appointmentCreator: [Appointment]!
+    "Birthdate"
+    birthDate: DateTime!
+    createdAt: DateTime!
+    "Email"
+    email: String
+    examined: [Examination]!
+    examining: [Examination]!
+    "Gender"
+    gender: String!
+    id: Int!
+    "User Full Name"
+    name: String!
+    news: [News]!
+    "Password"
+    password: String!
+    "Phone"
+    phone: String!
+    role: Role!
+    updatedAt: DateTime!
+    "Username"
+    username: String!
+}
+
+input CreateExaminationInput {
+    customerDescription: String!
+    diseaseName: String!
+    image: String!
+    "Patient ID"
+    patientId: Int!
+    predict: String!
+    resultImage: String!
+    status: String!
+}
+
+input CreateRoleInput {
+    "Role Name"
+    name: String!
+    "Role Slug"
+    slug: String!
+}
+
+input CreateUserDto {
+    "Birthdate"
+    birthDate: DateTime!
+    "Email"
+    email: String
+    "Gender"
+    gender: String!
+    "User Full Name"
+    name: String!
+    "Password"
+    password: String!
+    "Phone"
+    phone: String
+    "Role ID"
+    roleId: Int!
+    "Username"
+    username: String!
+}
+
+input PaginationDto {
+    "Items Filter"
+    filter: String
+    "Items per page"
+    limit: Float
+    "Items Order (ASC|DESC) "
+    order: String
+    "Page number"
+    page: Float
+}
+
+input UpdateExaminationInput {
+    customerDescription: String
+    diseaseName: String
+    id: Int!
+    image: String
+    "Patient ID"
+    patientId: Int
+    predict: String
+    resultImage: String
+    status: String!
+}
+
+input UpdateRoleInput {
+    id: Int!
+    "Role Name"
+    name: String
+    "Role Slug"
+    slug: String
+}
+
+
+"A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format."
+scalar DateTime

@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "872405128438",
+    "project_id": "hunet-bbe97",
+    "storage_bucket": "hunet-bbe97.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:872405128438:android:8b431f2885afcd1bb548d7",
+        "android_client_info": {
+          "package_name": "com.hunet.hunet"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "872405128438-8t5cdiauaq4e7jfk6msohjnin1hu9oq7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD3t4Z9eFNRM_IVyM4e83VWdV0QRNbihRQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "872405128438-8t5cdiauaq4e7jfk6msohjnin1hu9oq7.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "872405128438-9fc2p8fhm9tvot1ibnt5mr9i8bkp4hjh.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.hunet.hunet"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

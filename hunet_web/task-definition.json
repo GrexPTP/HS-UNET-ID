@@ -1,0 +1,76 @@
+{
+    "family": "hunet-web",
+    "ipcMode": null,
+    "executionRoleArn": "ecsTaskRole",
+    "containerDefinitions": [
+      {
+        "environment": [
+          {
+            "name": "APP_DEBUG",
+            "value": "false"
+          },
+          {
+            "name": "APP_ENV",
+            "value": "production"
+          },
+          {
+            "name": "APP_KEY",
+            "value": "base64:Z5C3lKx10DLtz49W5Y00jH/grnnhechtSvqfqpph+8c="
+          },
+          {
+            "name": "DB_CONNECTION",
+            "value": "mysql"
+          },
+          {
+            "name": "DB_DATABASE",
+            "value": "hunet"
+          }
+        ],
+        "portMappings": [
+            {
+              "hostPort": 8080,
+              "protocol": "tcp",
+              "containerPort": 8080
+            }
+          ],
+        "mountPoints": [
+          {
+            "readOnly": null,
+            "containerPath": "/var/www",
+            "sourceVolume": "app"
+          }
+        ],
+        "secrets": [
+          {
+            "valueFrom": "ssm-secret-key",
+            "name": "DB_HOST"
+          },
+          {
+            "valueFrom": "ssm-secret-key",
+            "name": "DB_PASSWORD"
+          },
+          {
+            "valueFrom": "ssm-secret-key",
+            "name": "DB_PORT"
+          },
+          {
+            "valueFrom": "ssm-secret-key",
+            "name": "DB_USERNAME"
+          }
+        ],
+        "image": "346331985700.dkr.ecr.us-east-1.amazonaws.com/hunet-web:latest",
+        "name": "hunet-web"
+      }
+    ],
+    "memory": "256",
+    "cpu": "512",
+    "volumes": [
+      {
+        "name": "app",
+        "host": {
+          "sourcePath": null
+        },
+        "dockerVolumeConfiguration": null
+      }
+    ]
+  }

@@ -1,0 +1,18 @@
+{
+    "models": [
+        {
+            "id": 1,
+            "name": "Hunet"
+        },
+        {
+            "id": 2,
+            "name": "Resnet"
+        },
+        {
+            "id": 3,
+            "name": "Random Forest"
+        }
+    ],
+    "selectedModel": "1",
+    "isPreprocess": true
+}
