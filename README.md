@@ -21,7 +21,7 @@ We use U-Net for segmentation. With the target is decrease the unwanted skin are
 
 ### Model
 
--thêm hình-
+![img/architect.png](img/architect.png)
 
 The network is extended from Densenet. But In the final process, we added four more layers to our model with details as follows.
 *  A max-pooling layer for flattening the output layer to one-dimension
@@ -31,7 +31,7 @@ The network is extended from Densenet. But In the final process, we added four m
 
 ### Training
 
--thêm hình-
+![img/acc-loss.png](img/acc-loss.png)
 
 The model is trained for 150 epochs.
 The training accuracy has reached almost 100 percent, while the validation accuracy is getting near about 85 percent and starting to get stable as epoch 40 and above. The loss getting stable as the epoch number is getting near 40, and keeping the number down to below 1.
